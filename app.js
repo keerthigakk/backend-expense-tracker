@@ -18,70 +18,70 @@ mongoose
     })
   })
 
-//   const expenseSchema=new mongoose.Schema({
-//     id:{type:String ,required:true,unique:true},
-//     title:{type:String,required:true},
-//     amount:{type:Number,required:true},
-// });
+  const expenseSchema=new mongoose.Schema({
+    id:{type:String ,required:true,unique:true},
+    title:{type:String,required:true},
+    amount:{type:Number,required:true},
+});
 
 
-// const expenseModel=mongoose.model("expense-tracker",expenseSchema);//collection name,schema
+const expenseModel=mongoose.model("expense-tracker",expenseSchema);//collection name,schema
 
-// app.post("/api/expense",async(req,res)=>{
-//     const{title,amount}=req.body;
-//     const newExpense=new expenseModel({
-//         id:uuidv4(),
-//         title:title,
-//         amount:amount,
-//      });
-//      const savedExpense=await newExpense.save();
-//      res.status(200).json(savedExpense);
-// });
+app.post("/api/expense",async(req,res)=>{
+    const{title,amount}=req.body;
+    const newExpense=new expenseModel({
+        id:uuidv4(),
+        title:title,
+        amount:amount,
+     });
+     const savedExpense=await newExpense.save();
+     res.status(200).json(savedExpense);
+});
 
-// app.get("/api/expense/:amount", async (req, res) => {
-//     const { amount } = req.params;
-//     const expense = await expenseModel.findOne({ amount : amount }); 
-//     res.json(expense)
-//     //  console.log(req.params)
+app.get("/api/expense/:amount", async (req, res) => {
+    const { amount } = req.params;
+    const expense = await expenseModel.findOne({ amount : amount }); 
+    res.json(expense)
+    //  console.log(req.params)
    
-//   });
+  });
   
-//   app.put("/api/expense/:title", async (req, res) => {
-//     const{title}=req.params
-//     const expense = await expenseModel.updateOne({title:title},{ $set:{amount : 500}}); 
-//     res.json(expense)
+  app.put("/api/expense/:title", async (req, res) => {
+    const{title}=req.params
+    const expense = await expenseModel.updateOne({title:title},{ $set:{amount : 500}}); 
+    res.json(expense)
     
    
-//   });
+  });
 
-//   app.delete("/api/expense/:id", async (req, res) => {
-//     const{id}=req.params
-//     const expense = await expenseModel.deleteOne({id:id}); 
-//     res.json(expense)
+  app.delete("/api/expense/:id", async (req, res) => {
+    const{id}=req.params
+    const expense = await expenseModel.deleteOne({id:id}); 
+    res.json(expense)
     
    
-//   });
+  });
 
-const userSchema=new mongoose.Schema({
-  username:{type:String,required:true,unique:true},
-  password:{type:String,required:true},
-});
+// const userSchema=new mongoose.Schema({
+//   username:{type:String,required:true,unique:true},
+//   password:{type:String,required:true},
+// });
 
-const User=mongoose.model("User",userSchema);
+// const User=mongoose.model("User",userSchema);
 
-module.exports=User;
+// module.exports=User;
 
-// const expenseModel=mongoose.model("expens-tracker",expenseSchema);//collection name,schema
+// // const expenseModel=mongoose.model("expens-tracker",expenseSchema);//collection name,schema
 
-app.post("/sign",async(req,res)=>{
-  const{username,password}=req.body;
-  const newExpense=new User({
-      // id:uuidv4(),
-      // title:title,
-      // amount:amount,
-      username:username,
-      password:password,
-   });
-   const savedExpense=await newExpense.save();
-   res.status(200).json(savedExpense);
-});
+// app.post("/sign",async(req,res)=>{
+//   const{username,password}=req.body;
+//   const newExpense=new User({
+//       // id:uuidv4(),
+//       // title:title,
+//       // amount:amount,
+//       username:username,
+//       password:password,
+//    });
+//    const savedExpense=await newExpense.save();
+//    res.status(200).json(savedExpense);
+// });
